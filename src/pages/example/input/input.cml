@@ -5,7 +5,7 @@
       <c-header title="input"></c-header>
       <text class="title-text">focus聚焦 web端不支持</text>
       <view class="input-wrap">
-        <origin-image style="{{imageStyle}}" src="{{firstImage}}" default-source="{{defaultImage}}"></origin-image>
+        <qw-image show-style="{{imageStyle}}" imagePath="{{firstImage}}"></qw-image>
         <c-input class="width:200cpx;" c-style="border:none;" placeholder="focus聚焦 web端不支持" focus="{{isfocus}}" c-bind:blur="bindblurevent" c-bind:focus="bindfocusevent" c-bind:input="bindinputevent" c-bind:confirm="bindconfirmevent"></c-input>
       </view>
       <text class="title-text">数据绑定,value:{{inputValue}}</text>
@@ -95,11 +95,11 @@ class Input {
     firstImage: require('../../../assets/images/verify-img04.png'),
     secondImage: require('../../../assets/images/verify-img05.png'),
     thirdImage: require('../../../assets/images/verify-img06.png'),
-    defaultImage:require('../../../assets/images/imageload_error.png')
+    defaultImage: require('../../../assets/images/imageload_error.png')
   }
 
   computed = {
-    imageStyle(){
+    imageStyle() {
       return "width:50cpx;height:50cpx;margin-right:10cpx;";
     }
   }
@@ -182,7 +182,8 @@ export default new Input();
 						"c-page": "/components/page/page",
 						"c-header": "../../components/header/header",
 						"c-scroller": "/components/scroller/scroller",
-						"c-input": "/components/input/input"
+						"c-input": "/components/input/input",
+            "qw-image":"../../components/qw-image/qw-image"
 				},
 				"navigationBarTitleText": "input",
 				"backgroundTextStyle": "dark",

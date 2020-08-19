@@ -1,0 +1,90 @@
+<template>
+<image style="{{imageStyle}}" resize="{{fitStyle}}" src="{{realImagePath}}" c-bind:error="imageError"></image>
+</template>
+
+<script>
+
+class QwImage implements QwImageInterface {
+  props = {
+    imagePath: {
+      type: String,
+      default: ""
+    },
+    showStyle: {
+      type: String,
+      default: ""
+    },
+    placeholderImg: {
+      type: String,
+      default: require('./imageload_error.png')
+    },
+    fitStyle: {
+      type: String,
+      default: "cover"
+    }
+  }
+
+  data = {
+    realImagePath: ""
+  }
+
+  computed = {
+    imageStyle() {
+      return this.showStyle + `object-fit: ${this.fitStyle};`;
+    }
+  }
+
+  watch = {
+    imagePath(v) {
+      this.realImagePath = this.imagePath;
+    }
+  }
+
+  methods = {
+    imageError(e) {
+      // console.log("图片加载报错");
+      this.realImagePath = this.placeholderImg;
+    }
+  }
+
+  beforeCreate() {}
+
+  created() {
+    if (this.imagePath) {
+      this.realImagePath = this.imagePath;
+    } else {
+      this.realImagePath = this.placeholderImg;
+    }
+
+  }
+
+  beforeMount() {}
+
+  mounted() {
+
+  }
+
+  beforeDestroy() {}
+
+  destroyed() {}
+}
+
+export default new QwImage();
+</script>
+
+<style >
+
+</style>
+
+<script cml-type="json">
+{
+		"base": {
+				"usingComponents": {
+						
+				}
+		}
+}
+</script>
+
+
+

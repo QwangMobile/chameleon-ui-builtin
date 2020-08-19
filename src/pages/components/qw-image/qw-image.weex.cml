@@ -1,0 +1,81 @@
+<template>
+<view>
+  <origin-image style="{{imageStyle}}" resize="{{fitStyle}}" @load="onImageLoad" src="{{realPath}}" placeholder="{{placeholderImg}}"></origin-image>
+</view>
+</template>
+
+<script>
+class QwImage implements QwImageInterface {
+  props = {
+    imagePath: {
+      type: String,
+      default: ""
+    },
+    showStyle: {
+      type: String,
+      default: ""
+    },
+    placeholderImg: {
+      type: String,
+      default: require('./imageload_error.png')
+    },
+    fitStyle: {
+      type: String,
+      default: "cover"
+    }
+  }
+
+  data = {
+    realPath: ""
+  }
+  computed = {
+    imageStyle() {
+      return this.showStyle;
+    }
+  }
+
+  watch = {
+    imagePath(v) {
+      if (this.imagePath <= 0) {
+        this.realPath = this.placeholderImg;
+      } else {
+        this.realPath = this.imagePath;
+      }
+    }
+  }
+
+  methods = {
+    onImageLoad(event) {
+      if (event.success) {
+        // Do something to hanlde success
+      } else {
+        this.realPath = this.placeholderImg;
+      }
+    }
+  }
+  mounted() {
+    //路径为空就显示占位图
+    if (this.imagePath <= 0) {
+      this.realPath = this.placeholderImg;
+    } else {
+      this.realPath = this.imagePath;
+    }
+  }
+}
+
+export default new QwImage();
+</script>
+
+<style >
+
+</style>
+
+<script cml-type="json">
+{
+		"base": {
+				"usingComponents": {
+						
+				}
+		}
+}
+</script>
